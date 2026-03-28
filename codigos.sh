@@ -32,35 +32,40 @@ at() {
 
 
 # Para SkyMain 
-SkyMain() {
+skymain() {
   case "$1" in
     1)
-      skycd REPOSITORIOS && echo "Estas en REPOSITORIOS lol"
+      skycd SKYCARPETA && echo "Estas en SKYCARPETA"
       ;;
     2)
-      skycd SKYCARPETA && echo "Estas en SKYCARPETA"
+      skycd REPOSITORIOS && echo "Estas en REPOSITORIOS lol"
+      ;;
+    3)
+      skycd REPOSITORIOS/terminal-config && echo "Estas en REPOSITORIOS lol"
       ;;
     *)
       echo "Opciones:"
-      echo "1 = Repositorios"
-      echo "2 = SKYCARPETA"
+      echo "1 = SKYCARPETA"
+      echo "2 = REPOSITORIOS (hacia abajo sus carpetas)"}
+      echo "3 = terminal-config"
       ;;
   esac
 }
 
 # Para BlueMain 
-BlueMain() {
+bluemain() {
   case "$1" in
     1)
-      cd /storage/emulated/0/REPOSITORIOS && echo "📂 Estás en Downloads"
+      skycd /storage/emulated/0/REPOSITORIOS && echo "📂 Estás en Downloads"
       ;;
     2)
-      cd /Documents && echo "📂 Estás en Documents"
+      skycd /Documents && echo "📂 Estás en Documents"
       ;;
     *)
       echo "Opciones:"
-      echo "1 = Downloads"
-      echo "2 = Documents"
+      echo "1 = SKYCARPETA"
+      echo "2 = REPOSITORIOS (hacia abajo sus carpetas)"
+      echo "3 = "
       ;;
   esac
 }

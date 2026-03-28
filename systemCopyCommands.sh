@@ -1,5 +1,6 @@
 cargarSystemCopyCommands() {
   source systemCopyCommands.sh
+  source ~/.bashrc
 }
 
 SystemCopyCommands() {
