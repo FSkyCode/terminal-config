@@ -1,7 +1,8 @@
 cargarSystemCopyCommands() {
-  source systemCopyCommands
+  source systemCopyCommands.sh
 }
 
-startSystemCopyCommands() {
+SystemCopyCommands() {
   cat codigos.sh > ~/.bashrc
 }
+

@@ -1,9 +1,7 @@
+# Alias u otros datos
 alias sd='skycd'
 
-SKYSYSTEM() {
-  source system.sh
-}
-
+# Comandos personalisados 
 skycd() {
   if [ -z "$1" ]; then
     echo -e "\e[31mDigita una ubicacion lol\e[0m"
@@ -20,15 +18,38 @@ skycd() {
   ls -a
 }
 
-blue() {
-  echo "Es para pc lol"
+back() {
+  echo "Saliendo..."
+  skycd ..
+  echo "Ya saliste a $1... ahora sal a tocar pasto XD"
 }
 
-lol() {
-  cd /storage/emulated/0/REPOSITORIOS
+at() {
+  echo "Atajo fuaaa"
+  cd -
+  echo "Atajo finalizado... y hablando de momos, se acabaron los momos"
 }
 
-sky() {
+
+# Para SkyMain 
+SkyMain() {
+  case "$1" in
+    1)
+      skycd REPOSITORIOS && echo "Estas en REPOSITORIOS lol"
+      ;;
+    2)
+      skycd SKYCARPETA && echo "Estas en SKYCARPETA"
+      ;;
+    *)
+      echo "Opciones:"
+      echo "1 = Repositorios"
+      echo "2 = SKYCARPETA"
+      ;;
+  esac
+}
+
+# Para BlueMain 
+BlueMain() {
   case "$1" in
     1)
       cd /storage/emulated/0/REPOSITORIOS && echo "📂 Estás en Downloads"
@@ -44,17 +65,23 @@ sky() {
   esac
 }
 
-back() {
-  echo "Saliendo..."
-  cd ..
-  echo "Ya saliste, pero ve a salir pasto pinshe loco :V"
+# Para SkyLun
+skylun() {
+  case "$1" in
+    1)
+      skycd REPOSITORIOS && echo "Estas en REPOSITORIOS lol"
+      ;;
+    2)
+      skycd SKYCARPETA && echo "Estas en SKYCARPETA"
+      ;;
+    *)
+      echo "Opciones:"
+      echo "1 = Repositorios"
+      echo "2 = SKYCARPETA"
+      ;;
+  esac
 }
 
-at() {
-  echo "Atajo fuaaa"
-  cd -
-  echo "Atajo finalizado... y si, hablando de momos, se acabaron los momos"
-}
 
 save() {
   echo "Sincronizando lol"
