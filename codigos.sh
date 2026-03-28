@@ -1,7 +1,17 @@
 # Alias u otros datos
 alias sd='skycd'
+IMPORTANTE="systemCopyCommands.sh"
 
 # Comandos personalisados 
+
+# Carga importante
+cargaIm() {
+  echo "Cargando $IMPORTANTE"
+  source "$IMPORTANTE"
+  echo "Ahora el del sistema"
+  source ~/.bashrc
+}
+
 skycd() {
   if [ -z "$1" ]; then
     echo -e "\e[31mDigita una ubicacion lol\e[0m"
@@ -34,9 +44,14 @@ skymainAllSaves() {
   cd
   skymain 1 && echo "A guardar SKYCARPETA"
   save
-  cd
-  skymain 3 && echo "A guardar REPOSITORIO 1"
-  save
+  for dir in /c/Users/juanf/REPOSITORIOS/*; do
+    if [ -d "$dir/.git" ]; then
+      echo "Repositorio: $dir"
+      cd "$dir" || continue
+      save
+      echo "----------------"
+    fi
+  done
 }
 
 
