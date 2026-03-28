@@ -30,6 +30,15 @@ at() {
   echo "Atajo finalizado... y hablando de momos, se acabaron los momos"
 }
 
+skymainAllSaves() {
+  cd
+  skymain 1 && echo "A guardar SKYCARPETA"
+  save
+  cd
+  skymain 3 && echo "A guardar REPOSITORIO 1"
+  save
+}
+
 
 # Para SkyMain 
 skymain() {
