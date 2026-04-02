@@ -1,5 +1,7 @@
 # Alias u otros datos
+
 alias sd='skycd'
+DIR="~$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 IMPORTANTE="systemCopyCommands.sh"
 
 # Comandos personalisados 
@@ -56,8 +58,8 @@ colors() {
 
 # Carga importante
 cargaIm() {
-  echo "Cargando $IMPORTANTE"
-  source "$IMPORTANTE"
+  echo "Cargando $DIR/$IMPORTANTE"
+  source "$DIR/$IMPORTANTE"
   SystemCopyCommands
   echo "Ahora el del sistema"
   source ~/.bashrc
