@@ -5,16 +5,18 @@ IMPORTANTE="systemCopyCommands.sh"
 # Comandos personalisados 
 
 help() {
-  echo "cargaIm: Carga archivos con codigos del sistema y subsistema."
-  echo "skycd: Una mejora a 'cd'."
-  echo "back: Salir de una carpeta."
-  echo "at: Devolverte a la ultima carpeta."
-  echo "skymainAllSaves: Un save a todas las carpetas."
-  echo "skymain: Atajos para ir a carpetas importantes en el dispositivo 'SkyMain'"
-  echo "bluemain: "
-  echo "skylun: "
-  echo "save: Cargar y guardar con git (funcional en cualquier carpeta =D)."
-  echo "saveAndExit: Guardar y salir."
+  echo -e "\e[36m=========== SKY HELP ===========\e[0m"
+  echo -e "\e[33mcargaIm:\e[0m Carga archivos con codigos del sistema y subsistema."
+  echo -e "\e[33mskycd:\e[0m Una mejora a 'cd'."
+  echo -e "\e[33mback:\e[0m Salir de una carpeta."
+  echo -e "\e[33mat:\e[0m Devolverte a la ultima carpeta."
+  echo -e "\e[33mskymainAllSaves:\e[0m Un save a todas las carpetas."
+  echo -e "\e[33mskymain:\e[0m Atajos para carpetas importantes en SkyMain."
+  echo -e "\e[33mbluemain:\e[0m ..."
+  echo -e "\e[33mskylun:\e[0m ..."
+  echo -e "\e[33msave:\e[0m Guardar con git."
+  echo -e "\e[33msaveAndExit:\e[0m Guardar y salir."
+  echo -e "\e[36m================================\e[0m"
 }
 
 # Carga importante
@@ -124,8 +126,12 @@ skylun() {
   esac
 }
 
-
 save() {
+  SECRETSAVE
+  SECRETSAVE
+}
+
+SECRETSAVE() {
   echo "Sincronizando lol"
   git pull --rebase > /dev/null &&
   echo "Listo, ahora guardando"
