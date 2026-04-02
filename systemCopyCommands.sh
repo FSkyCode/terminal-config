@@ -1,10 +1,5 @@
-cargarSystemCopyCommands() {
-  source systemCopyCommands.sh
-  source ~/.bashrc
-}
-
 SystemCopyCommands() {
-
+  echo "SystemCopyCommands ejecutandose... (copiando),"
   cat codigos.sh > ~/.bashrc
 }
 
