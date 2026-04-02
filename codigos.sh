@@ -6,7 +6,7 @@ IMPORTANTE="systemCopyCommands.sh"
 
 help() {
   echo -e "\e[36m=========== SKY HELP ===========\e[0m"
-  echo -e "\e[34mcolors: Ver el numero de color para echos =D"
+  echo -e "\e[34mcolors:\e[96m Ver el numero de color para echos =D"
   echo -e "\e[33mcargaIm:\e[0m Carga archivos con codigos del sistema y subsistema."
   echo -e "\e[33mskycd:\e[0m Una mejora a 'cd'."
   echo -e "\e[33mback:\e[0m Salir de una carpeta."
