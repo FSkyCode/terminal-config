@@ -4,6 +4,19 @@ IMPORTANTE="systemCopyCommands.sh"
 
 # Comandos personalisados 
 
+help() {
+  echo "cargaIm: Carga archivos con codigos del sistema y subsistema."
+  echo "skycd: Una mejora a 'cd'."
+  echo "back: Salir de una carpeta."
+  echo "at: Devolverte a la ultima carpeta."
+  echo "skymainAllSaves: Un save a todas las carpetas."
+  echo "skymain: Atajos para ir a carpetas importantes en el dispositivo 'SkyMain'"
+  echo "bluemain: "
+  echo "skylun: "
+  echo "save: Cargar y guardar con git (funcional en cualquier carpeta =D)."
+  echo "saveAndExit: Guardar y salir."
+}
+
 # Carga importante
 cargaIm() {
   echo "Cargando $IMPORTANTE"

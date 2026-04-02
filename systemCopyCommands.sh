@@ -4,6 +4,7 @@ cargarSystemCopyCommands() {
 }
 
 SystemCopyCommands() {
+
   cat codigos.sh > ~/.bashrc
 }
 
