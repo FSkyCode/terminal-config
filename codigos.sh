@@ -6,6 +6,7 @@ IMPORTANTE="systemCopyCommands.sh"
 
 help() {
   echo -e "\e[36m=========== SKY HELP ===========\e[0m"
+  echo -e "\e[34mcolors: Ver el numero de color para echos =D"
   echo -e "\e[33mcargaIm:\e[0m Carga archivos con codigos del sistema y subsistema."
   echo -e "\e[33mskycd:\e[0m Una mejora a 'cd'."
   echo -e "\e[33mback:\e[0m Salir de una carpeta."
@@ -16,13 +17,48 @@ help() {
   echo -e "\e[33mskylun:\e[0m ..."
   echo -e "\e[33msave:\e[0m Guardar con git."
   echo -e "\e[33msaveAndExit:\e[0m Guardar y salir."
-  echo -e "\e[36m================================\e[0m"
+  echo -e "\e[36mLOL=============================\e[0m"
+}
+
+colors() {
+  echo "===== COLORES NORMALES ====="
+  for i in {30..37}; do
+    echo -e "\e[${i}mColor codigo ${i}m\e[0m"
+    done
+
+  echo ""
+  echo "===== COLORES BRILLANTES ====="
+  for i in {90..97}; do
+    echo -e "\e[${i}mColor codigo ${i}m\e[0m"
+    done
+
+  echo ""
+  echo "===== FONDOS ====="
+  for i in {40..47}; do
+    echo -e "\e[${i}mFondo codigo ${i}m\e[0m"
+    done
+
+  echo ""
+  echo "===== FONDOS BRILLANTES ====="
+  for i in {100..107}; do
+    echo -e "\e[${i}mFondo codigo ${i}m\e[0m"
+    done
+
+  echo ""
+  echo "===== ESTILOS ====="
+  echo -e "\e[1m1 Negrita\e[0m"
+  echo -e "\e[2m2 Opaco\e[0m"
+  echo -e "\e[3m3 Italico\e[0m"
+  echo -e "\e[4m4 Subrayado\e[0m"
+  echo -e "\e[5m5 Parpadeo\e[0m"
+  echo -e "\e[7m7 Invertido\e[0m"
 }
 
 # Carga importante
 cargaIm() {
   echo "Cargando $IMPORTANTE"
   source "$IMPORTANTE"
+  SystemCopyCommands
   echo "Ahora el del sistema"
   source ~/.bashrc
 }
