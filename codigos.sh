@@ -63,6 +63,7 @@ cargaIm() {
   SystemCopyCommands
   echo "Ahora el del sistema"
   source ~/.bashrc
+  echo "Version: 0.0.2"
 }
 
 skycd() {
@@ -118,7 +119,7 @@ skymain() {
       skycd REPOSITORIOS && echo "Estas en REPOSITORIOS lol"
       ;;
     3)
-      skycd REPOSITORIOS/terminal-config && echo "Estas en REPOSITORIOS lol"
+      skycd REPOSITORIOS/terminal-config && echo "Estas en TERMINAL-CONFIG de REPOSITORIOS"
       ;;
     *)
       echo "Opciones:"
@@ -133,16 +134,22 @@ skymain() {
 bluemain() {
   case "$1" in
     1)
-      skycd /storage/emulated/0/REPOSITORIOS && echo "📂 Estás en Downloads"
+      cd ~
+      skycd /storage/emulated/0/SKYCARPETA && echo "Estas en SKYCARPETA"
       ;;
     2)
-      skycd /Documents && echo "📂 Estás en Documents"
+      skycd /storage/emulated/0/REPOSITORIOS && echo "Estas en REPOSITORIOS"
       ;;
+    3)
+      skycd /storage/emulated/0/REPOSITORIOS/terminal-config && echo "Estas en TERMINAL-CONFIG de REPOSITORIOS"
+      ;;
+    4)
+      skycd /storage/emulated/0/REPOSITORIOS/s
     *)
       echo "Opciones:"
       echo "1 = SKYCARPETA"
       echo "2 = REPOSITORIOS (hacia abajo sus carpetas)"
-      echo "3 = "
+      echo "3 = Terminal config"
       ;;
   esac
 }
