@@ -1,10 +1,19 @@
 # Alias u otros datos
 
 alias sd='skycd'
-DIR="~$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 IMPORTANTE="systemCopyCommands.sh"
+list=(
+  "Opciones:"
+  "SKYSYSTEM"
+  "SKYCARPETA"
+  "> LUCKY-BLOCK-GAME"
+  "REPOSITORIOS"
+  "> terminal-config"
+  "> Proyecto-G-nesis-ASISTENTE-"
+)
 
-# Comandos personalisados 
+
+# Comandos personalisados
 
 help() {
   echo -e "\e[36m=========== SKY HELP ===========\e[0m"
@@ -58,12 +67,23 @@ colors() {
 
 # Carga importante
 cargaIm() {
-  echo "Cargando $DIR/$IMPORTANTE"
-  source "$DIR/$IMPORTANTE"
-  SystemCopyCommands
-  echo "Ahora el del sistema"
-  source ~/.bashrc
-  echo "Version: 0.0.2"
+  # SISTEMAS DISPONIBLES
+  skymain="> Proyecto-G-nesis-ASISTENTE-"
+  for item in "${!list[@]}"; do
+    if [[ "${list[$i]}" == "$skymain" ]]; then
+      skymainHelper="$i"
+    fi
+  done
+
+  echo "Empezando la carga de comandos personalizados... Recuerde estar en el repositorio/carpeta TERMINAL-CONFIG =D"
+  echo "Cargando $IMPORTANTE"
+  source "$IMPORTANTE" && "Se encontro el codigo a usar =D"
+  SystemCopyCommands && echo "Uso del SystemCopyCommands exitoso =D" source ~/.bashrc && echo "Sistema del usuario actualizado! Ultimas novedades agregadas =D" echo "Vuelva pronto!"
+  echo "Lamentamos la falla, por favor vaya a la carpeta correspondiente usando por ejemplo: "
+  echo "SkyMain: skymain $skymainHelper"
+  echo "BlueMain: No disponible"
+  echo "SkyLun: No disponible"
+  echo "Version: 0.0.3"
 }
 
 skycd() {
@@ -109,23 +129,34 @@ skymainAllSaves() {
 }
 
 
-# Para SkyMain 
+# Para SkyMain
 skymain() {
   case "$1" in
+    help)
+      echo "SKYSYSTEM se enfoca en clonar repositorios del ADMIN, demas comandos te envian a los repositorios de PROYECTOS o REPOSITORIOS"
+      ;;
     1)
-      skycd SKYCARPETA && echo "Estas en SKYCARPETA"
+      skycd SKYSYSTEM && echo "Estas en SKYSYSTEM"
+      save
       ;;
     2)
-      skycd REPOSITORIOS && echo "Estas en REPOSITORIOS lol"
+      skycd PROYECTO/SKYCARPETA && echo "Estas en SKYCARPETA"
       ;;
     3)
-      skycd REPOSITORIOS/terminal-config && echo "Estas en TERMINAL-CONFIG de REPOSITORIOS"
+      skycd PROYECTO/REPOSITORIOS && echo "Estas en REPOSITORIOS"
+      ;;
+    4)
+      skycd PROYECTO/REPOSITORIOS/terminal-config && echo "Estas en TERMINAL-CONFIG de REPOSITORIOS"
+      ;;
+    5)
+      skycd Proyecto-G-nesis-ASISTENTE- && echo "Estas en PROYECTO-G-NESIS-ASISTENTE-"
       ;;
     *)
-      echo "Opciones:"
-      echo "1 = SKYCARPETA"
-      echo "2 = REPOSITORIOS (hacia abajo sus carpetas)"}
-      echo "3 = terminal-config"
+      i=0
+      for item in "${list[@]}"; do
+        echo "[$i] = $item"
+        ((i++))
+      done
       ;;
   esac
 }
@@ -144,7 +175,8 @@ bluemain() {
       skycd /storage/emulated/0/REPOSITORIOS/terminal-config && echo "Estas en TERMINAL-CONFIG de REPOSITORIOS"
       ;;
     4)
-      skycd /storage/emulated/0/REPOSITORIOS/s
+      skycd /storage/emulated/0/REPOSITORIOS/Proyecto-G-nesis-ASISTENTE- && echo "Estas en PROYECTO-G-NESIS-ASISTENTE-"
+      ;;
     *)
       echo "Opciones:"
       echo "1 = SKYCARPETA"
