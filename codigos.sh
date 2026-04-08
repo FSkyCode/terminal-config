@@ -10,7 +10,7 @@ list=(
   "REPOSITORIOS"
   "> terminal-config"
   "> Proyecto-G-nesis-ASISTENTE-"
-)
+09)
 
 
 # Comandos personalisados
@@ -65,27 +65,6 @@ colors() {
   echo -e "\e[7m7 Invertido\e[0m"
 }
 
-# Carga importante
-cargaIm() {
-  # SISTEMAS DISPONIBLES
-  skymain="> Proyecto-G-nesis-ASISTENTE-"
-  for item in "${!list[@]}"; do
-    if [[ "${list[$i]}" == "$skymain" ]]; then
-      skymainHelper="$i"
-    fi
-  done
-
-  echo "Empezando la carga de comandos personalizados... Recuerde estar en el repositorio/carpeta TERMINAL-CONFIG =D"
-  echo "Cargando $IMPORTANTE"
-  source "$IMPORTANTE" && "Se encontro el codigo a usar =D"
-  SystemCopyCommands && echo "Uso del SystemCopyCommands exitoso =D" source ~/.bashrc && echo "Sistema del usuario actualizado! Ultimas novedades agregadas =D" echo "Vuelva pronto!"
-  echo "Lamentamos la falla, por favor vaya a la carpeta correspondiente usando por ejemplo: "
-  echo "SkyMain: skymain $skymainHelper"
-  echo "BlueMain: No disponible"
-  echo "SkyLun: No disponible"
-  echo "Version: 0.0.3"
-}
-
 skycd() {
   if [ -z "$1" ]; then
     echo -e "\e[31mDigita una ubicacion lol\e[0m"
@@ -132,10 +111,11 @@ skymainAllSaves() {
 # Para SkyMain
 skymain() {
   case "$1" in
-    help)
+    0)
       echo "SKYSYSTEM se enfoca en clonar repositorios del ADMIN, demas comandos te envian a los repositorios de PROYECTOS o REPOSITORIOS"
       ;;
     1)
+      skycd ~
       skycd SKYSYSTEM && echo "Estas en SKYSYSTEM"
       save
       ;;
