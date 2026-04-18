@@ -1,3 +1,0 @@
-hola() {
-echo "Prueba XDDDDD"
-}

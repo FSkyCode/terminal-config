@@ -1,40 +1,31 @@
+# PROTOTIPO
+PROTOTIPO="> Proyecto-G-nesis-ASISTENTE-"
+BASHRC="~/.bashrc"
+
+# PREGUNTAS
+pregunta_A() {
+  echo "Ha habido distintos errores durante la carga, ¿seguir?"
+  read -p "Y|y/N|n> " respuesta_A
+  case respuesta_A; then
+    Y|y) echo "lol"; break;
+    N|n) echo "No lol"; break;
+    *) echo "Inserte una opcion correcta, por favor";
+}
+pregunta_B() {
+  echo "Todo ha sido correctamente cargado, por favor prosiga"
+  read -p "> Presione cualquier tecla"
+}
+
+# FINAL
 SystemCopyCommands() {
+  echo "PROTOTIPO SKYSYSTEM"
   echo "SystemCopyCommands ejecutandose... (copiando)"
-  if rm ~/.bashrc; then
+  echo "-     -"
+
+  if source "$BASHRC"; then
     echo ""
-    if cat codigos.sh > ~/.bashrc; then
-      echo "Exitoso!"
-    else
-      echo "" # en cargaIm se encarga de los errores de la ejecucion lol
-    fi
-  else
-    "Error desconocido, abortando"
-  fi
-}
 
-# SISTEMAS DISPONIBLES
-skymain="> Proyecto-G-nesis-ASISTENTE-"
-
-cargaIm() {
-  # Buscar índice
-  for i in "${!list[@]}"; do
-    if [[ "${list[$i]}" == "$skymain" ]]; then
-      skymainHelper="$i"
-    fi
-  done
-}
-
-SystemCopyCommands() {
-  
-  echo "Empezando la carga de comandos personalizados..."
-  echo "Recuerde estar en TERMINAL-CONFIG =D"
-
-  echo "Cargando $IMPORTANTE"
-
-  if source "$IMPORTANTE"; then
-    echo "Se encontró el código =D"
-
-    SystemCopyCommands && echo "Uso de SystemCopyCommands exitoso =D"
+    SystemCopyCommands && echo "Uso de SystemCopyComm"
 
     source ~/.bashrc
     echo "Sistema del usuario actualizado!"
@@ -50,3 +41,21 @@ SystemCopyCommands() {
   echo "SkyLun: No disponible"
   echo "Version: 0.0.3"
 }
+
+SystemCopyCommands() {
+  echo "Prototipo de SKYSYSTEM | Comandos"
+  echo "SystemCopyCommands ejecutandose... (copiando)"
+  echo "-     -"
+  if rm ~/.bashrc; then
+    echo "Eliminando ~/.bashrc..."
+    if cat codigos.sh > ~/.bashrc; then
+      echo "Exitoso! Sistema cargado!"
+    else
+      echo "Algo impide la eliminacion de ~/.bashrc, proceso cancelado." # en cargaIm se encarga de los errores de la ejecucion lol
+    fi
+  else
+    "Error desconocido, abortando"
+  fi
+}
+
+

@@ -1,20 +1,18 @@
 # Alias u otros datos
-
 alias sd='skycd'
-IMPORTANTE="systemCopyCommands.sh"
+Prototipo="systemCopyCommands.sh"
 list=(
-  "Opciones:"
   "SKYSYSTEM"
   "SKYCARPETA"
   "> LUCKY-BLOCK-GAME"
   "REPOSITORIOS"
   "> terminal-config"
   "> Proyecto-G-nesis-ASISTENTE-"
-09)
+)
 
 
 # Comandos personalisados
-
+# Help
 help() {
   echo -e "\e[36m=========== SKY HELP ===========\e[0m"
   echo -e "\e[34mcolors:\e[96m Ver el numero de color para echos =D"
@@ -65,6 +63,7 @@ colors() {
   echo -e "\e[7m7 Invertido\e[0m"
 }
 
+# Comandos personalizados
 skycd() {
   if [ -z "$1" ]; then
     echo -e "\e[31mDigita una ubicacion lol\e[0m"
@@ -90,9 +89,10 @@ back() {
 at() {
   echo "Atajo fuaaa"
   cd -
-  echo "Atajo finalizado... y hablando de momos, se acabaron los momos"
+  echo "Y volo... Nombrando su barco Libertad"
 }
 
+# Guardado Globalizado
 skymainAllSaves() {
   cd
   skymain 1 && echo "A guardar SKYCARPETA"
@@ -108,6 +108,7 @@ skymainAllSaves() {
 }
 
 
+# Dispositivos
 # Para SkyMain
 skymain() {
   case "$1" in
