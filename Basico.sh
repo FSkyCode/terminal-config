@@ -109,7 +109,7 @@ skymainAllSaves() {
 
 
 # Dispositivos
-# Para SkyMain
+# Para SkyMain - Laptod OP
 skymain() {
   case "$1" in
     0)
@@ -142,7 +142,7 @@ skymain() {
   esac
 }
 
-# Para BlueMain 
+# Para BlueMain - Android no OP
 bluemain() {
   case "$1" in
     1)
@@ -167,7 +167,7 @@ bluemain() {
   esac
 }
 
-# Para SkyLun
+# Para SkyLun - Laptod Ubuntu/Lubuntu
 skylun() {
   case "$1" in
     1)
@@ -184,6 +184,7 @@ skylun() {
   esac
 }
 
+# Guardar y cargar
 save() {
   SECRETSAVE
   SECRETSAVE
@@ -200,6 +201,7 @@ SECRETSAVE() {
   git push > /dev/null  &&
   echo "Listo xD"
 }
+
 saveAndExit() {
   echo "Guardando y saliendo, ten cuidado!"
   save
