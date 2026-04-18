@@ -39,6 +39,7 @@ pregunta_B() {
 SystemCopyCommands() {
   source systemCopyCommands.sh
   cargar_sistema
+  source ~/.bashrc
 }
 
 
