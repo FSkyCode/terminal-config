@@ -217,16 +217,23 @@ skylun() {
 
 # Guardar y cargar
 save() {
-  SECRETSAVE
-  SECRETSAVE
-}
+  echo "Guardando..."
 
-SECRETSAVE() {
-  git add . > /dev/null &&
-  git commit -m "Auto update" > /dev/null || echo "Ey ey, estoy haciendo aogo aqui; No es cierto, no estas haciendo nada!"
-  git pull --rebase > /dev/null &&
-  git push > /dev/null  &&
-  echo "Listo xD"
+  git add .
+
+  git commit -m "auto-save" || echo "Nada que commitear"
+
+  # IMPORTANTE
+  if ! git pull --rebase; then
+    echo "Error en rebase, abortando..."
+    git rebase --abort 2>/dev/null
+    return 1
+  fi
+
+  if ! git push; then
+    echo "Error al hacer push"
+    return 1
+  fi
 }
 
 saveAndExit() {

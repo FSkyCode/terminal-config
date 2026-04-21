@@ -340,13 +340,9 @@ save() {
 }
 
 SECRETSAVE() {
-  echo "Sincronizando lol"
-  git pull --rebase > /dev/null &&
-  echo "Listo, ahora guardando"
   git add . > /dev/null &&
-  echo "Generando un commit todo zzz"
   git commit -m "Auto update" > /dev/null || echo "Ey ey, estoy haciendo aogo aqui; No es cierto, no estas haciendo nada!"
-  echo "Subiendo la wea"
+  git pull --rebase > /dev/null &&
   git push > /dev/null  &&
   echo "Listo xD"
 }
