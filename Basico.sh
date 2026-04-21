@@ -1,7 +1,12 @@
 # Alias u otros datos
 alias sd='skycd'
+skymainBASICO="/mnt/c/Users/juanf/"
+
+# Prototipo de comandos
 Prototipo="systemCopyCommands.sh"
-list=(
+
+# Opciones de navegacion
+skymainOPTIONS=(
   "SKYSYSTEM"
   "SKYCARPETA"
   "> LUCKY-BLOCK-GAME"
@@ -66,6 +71,7 @@ colors() {
 # Comandos personalizados
 skycd() {
   if [ -z "$1" ]; then
+
     echo -e "\e[31mDigita una ubicacion lol\e[0m"
     return
   fi
@@ -78,6 +84,14 @@ skycd() {
   echo -e "\e[32mEstas en $(pwd)\e[0m"
   echo -e "\e[34mArchivos:\e[0m"
   ls -a
+}
+
+maincd() {
+  skycd ~
+  skycd "$1"
+  echo "Estas en $2"
+  sleep 2
+  save
 }
 
 back() {
@@ -116,12 +130,10 @@ skymain() {
       echo "SKYSYSTEM se enfoca en clonar repositorios del ADMIN, demas comandos te envian a los repositorios de PROYECTOS o REPOSITORIOS"
       ;;
     1)
-      skycd ~
-      skycd SKYSYSTEM && echo "Estas en SKYSYSTEM"
-      save
+      maincd "$skymainBASICO"SKYSYSTEM "SKYSYSTEM"
       ;;
     2)
-      skycd PROYECTO/SKYCARPETA && echo "Estas en SKYCARPETA"
+      maincd "$skymainBASICO"PROYECTO/SKYCARPETA "SKYCARPETA"
       ;;
     3)
       skycd PROYECTO/REPOSITORIOS && echo "Estas en REPOSITORIOS"
@@ -134,7 +146,7 @@ skymain() {
       ;;
     *)
       i=0
-      for item in "${list[@]}"; do
+      for item in "${skymainOPTIONS[@]}"; do
         echo "[$i] = $item"
         ((i++))
       done
