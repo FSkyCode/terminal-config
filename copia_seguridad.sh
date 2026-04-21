@@ -127,26 +127,48 @@ skymainAllSaves() {
 }
 
 maincd() {
-  cd ~
-  skycd "$1"
-  echo "Estas en $2"
-  if [[ "$3" == "S" ]]; then
+  local ruta="$1"
+  local nombre="$2"
+  local menu="$3"
+  local autosave="$4"
+
+  cd ~ || return
+  skycd "$ruta"
+
+  echo "Estas en $nombre"
+
+  if [[ "$autosave" == "S" ]]; then
     sleep 1
     echo "Guardando durante navegacion"
     save
   else
     echo "Sin guardar despues de navegacion"
-    mostrar_opciones
+    mostrar_opciones "$menu"
   fi
 }
 
 mostrar_opciones() {
+  local tipo="$1"
+  local usuarioNavegacion
+
+  if [[ "$tipo" == "skymain" ]]; then
+    usuarioNavegacion="skymainOPTIONS"
+  elif [[ "$tipo" == "bluemain" ]]; then
+    usuarioNavegacion="bluemainOPTIONS"
+  else
+    echo "Menu desconocido"
+    return
+  fi
+
+  declare -n opciones="$usuarioNavegacion"
+
   local i=1
-  for item in "${skymainOPTIONS[@]}"; do
+  for item in "${opciones[@]}"; do
     echo "[$i] = $item"
     ((i++))
   done
 }
+
 
 # Para SkyMain - Laptod OP
 skymain() {
@@ -155,12 +177,7 @@ skymain() {
       maincd "$skymainBASICO"SKYSYSTEM "SKYSYSTEM" "$2"
       ;;
     2)
-<<<<<<< HEAD
       maincd "$skymainBASICO"PROYECTOS/SKYCARPETA "SKYCARPETA" "$2"
-=======
-      skycd ~
-      skycd PROYECTO/SKYCARPETA && echo "Estas en SKYCARPETA"
->>>>>>> ee464a3 (Auto update)
       ;;
     3)
       maincd "$skymainBASICO"PROYECTOS/SKYCARPETA "AUN NO DISPONIBLE" "$2"
@@ -175,11 +192,7 @@ skymain() {
       maincd "$skymainBASICO"PROYECTOS/REPOSITORIOS/ "AUN NO DISPONIBLE" "$2"
       ;;
     *)
-      i=1
-      for item in "${skymainOPTIONS[@]}"; do
-        echo "[$i] = $item"
-        ((i++))
-      done
+      mostrar_opciones "skymain"
       ;;
   esac
 }
@@ -208,10 +221,7 @@ bluemain() {
       skycd /storage/emulated/0/REPOSITORIOS/Proyecto-G-nesis-ASISTENTE- && echo "Estas en PROYECTO-G-NESIS-ASISTENTE-"
       ;;
     *)
-      echo "Opciones:" # METER SISTEMA AUTOMATICO
-      echo "1 = SKYCARPETA"
-      echo "2 = REPOSITORIOS (hacia abajo sus carpetas)"
-      echo "3 = Terminal config"
+      mostrar_opciones "bluemain"
       ;;
   esac
 }

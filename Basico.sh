@@ -2,6 +2,7 @@
 # Alias u otros datos
 alias sd='skycd'
 skymainBASICO="/mnt/c/Users/juanf/"
+bluemainBASICO="/storage/0/emulated/"
 
 # Prototipo de comandos
 Prototipo="systemCopyCommands.sh"
@@ -122,30 +123,50 @@ skymainAllSaves() {
 }
 
 maincd() {
-  cd ~
-  skycd "$1"
-  echo "Estas en $2"
-  if [[ "$4" == "S" ]]; then
+  local ruta="$1"
+  local nombre="$2"
+  local menu="$3"
+  local autosave="$4"
+
+  cd ~ || return
+  skycd "$ruta"
+
+  echo "Estas en $nombre"
+
+  if [[ "$autosave" == "S" ]]; then
     sleep 1
     echo "Guardando durante navegacion"
     save
   else
     echo "Sin guardar despues de navegacion"
-    mostrar_opciones "$3"
+    mostrar_opciones "$menu"
   fi
 }
 
 mostrar_opciones() {
-  if [[ "$1" == "skymain"]]; then
+  local tipo="$1"
+  local usuarioNavegacion
+
+  if [[ "$tipo" == "skymain" ]]; then
+    echo "Opciones de SkyMain:"
     usuarioNavegacion="skymainOPTIONS"
-  elif [[ "$1" == "bluemain"]]; then
+  elif [[ "$tipo" == "bluemain" ]]; then
+    echo "Opciones de BlueMain:"
     usuarioNavegacion="bluemainOPTIONS"
+  else
+    echo "Menu desconocido"
+    return
+  fi
+
+  declare -n opciones="$usuarioNavegacion"
+
   local i=1
-  for item in "${$usuarioNavegacion[@]}"; do
+  for item in "${opciones[@]}"; do
     echo "[$i] = $item"
     ((i++))
   done
 }
+
 
 # Para SkyMain - Laptod OP
 skymain() {
@@ -178,24 +199,19 @@ skymain() {
 bluemain() {
   case "$1" in
     1)
-      skycd ~
-      skycd /storage/emulated/0/SKYSYSTEM && echo "Estas en SKYSYSTEM"
+      maincd "$bluemainBASICO" "No existe SKYSYSTEM" "$2"
       ;;
     2)
-      skycd ~
-      skycd /storage/emulated/0/REPOSITORIOS/SKYCARPETA && echo "Estas en SKYCARPETA"
+      maincd "$bluemainBASICO"SKYCARPETA "SKYCARPETA" "$2"
       ;;
     3)
-      skycd ~
-      skycd /storage/emulated/0/REPOSITORIOS && echo "Estas en REPOSITORIOS"
+      maincd "$bluemainBASICO"REPOSITORIOS "REPOSITORIOS" "$2"
       ;;
     4)
-      skycd ~
-      skycd /storage/emulated/0/REPOSITORIOS/terminal-config && echo "Estas en TERMINAL-CONFIG"
+      maincd "$bluemainBASICO"REPOSITORIOS/terminal-config "TERMINAL-CONFIG" "$2"
       ;;
     5)
-      skycd ~
-      skycd /storage/emulated/0/REPOSITORIOS/Proyecto-G-nesis-ASISTENTE- && echo "Estas en PROYECTO-G-NESIS-ASISTENTE-"
+      maincd "$bluemainBASICO"REPOSITORIOS/Proyecto-G-nesis-ASISTENTE- "SIN NOMBRE" "$2"
       ;;
     *)
       mostrar_opciones "bluemain"

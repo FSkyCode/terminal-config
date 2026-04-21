@@ -1,4 +1,4 @@
-# PROTOTIPO
+1# PROTOTIPO
 BASHRC="$HOME/.bashrc"
 source carga.sh
 
@@ -35,11 +35,39 @@ pregunta_B() {
   clear
 }
 
-# FINAL
+# Comandos importantes
 SystemCopyCommands() {
   source systemCopyCommands.sh
   cargar_sistema
   source ~/.bashrc
 }
 
+
+# Final
+sky() {
+  comando="$1"
+
+  case "$comando" in
+    SystemCopyCommands)
+      SystemCopyCommands
+      ;;
+    *)
+      help
+      helpSystem
+      ;;
+    esac
+}
+
+comandosSystem=(
+  "SystemCopyCommands"
+  "Help"
+)
+
+helpSystem() {
+  local i=1
+  for item in "${comandosSystem[@]}"; do
+    echo "[$i] =  $item"
+    ((i++))
+  done
+}
 
