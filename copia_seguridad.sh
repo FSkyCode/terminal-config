@@ -132,6 +132,11 @@ skymainOPTIONS=(
   "> terminal-config"
   "> Proyecto-G-nesis-ASISTENTE-"
 )
+bluemainOPTIONS=(
+  "SKYSYSTEM"
+  "SKYCARPETA"
+  "> LUCKY-BLOCK-GAME"
+)
 
 
 # Comandos personalisados
@@ -203,19 +208,6 @@ skycd() {
   ls -a
 }
 
-maincd() {
-  skycd ~
-  skycd "$1"
-  echo "Estas en $2"
-  sleep 2
-  if [[ "$3" == "S" ]]; then
-    echo "Guardando durante navegacion"
-    save
-  else
-    echo "Sin guardar despues de navegacion"
-  fi
-}
-
 back() {
   echo "Saliendo..."
   skycd ..
@@ -227,6 +219,9 @@ at() {
   cd -
   echo "Y volo... Nombrando su barco Libertad"
 }
+
+# --  Dispositivos  --
+# Comandos helpers
 
 # Guardado Globalizado
 skymainAllSaves() {
@@ -243,8 +238,28 @@ skymainAllSaves() {
   done
 }
 
+maincd() {
+  cd ~
+  skycd "$1"
+  echo "Estas en $2"
+  if [[ "$3" == "S" ]]; then
+    sleep 1
+    echo "Guardando durante navegacion"
+    save
+  else
+    echo "Sin guardar despues de navegacion"
+    mostrar_opciones
+  fi
+}
 
-# Dispositivos
+mostrar_opciones() {
+  local i=1
+  for item in "${skymainOPTIONS[@]}"; do
+    echo "[$i] = $item"
+    ((i++))
+  done
+}
+
 # Para SkyMain - Laptod OP
 skymain() {
   case "$1" in
