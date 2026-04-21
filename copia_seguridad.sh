@@ -116,6 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 # SKYSYSTEM START
+# PROTOTIPO Version -> 100%!
 # Alias u otros datos
 alias sd='skycd'
 skymainBASICO="/mnt/c/Users/juanf/"
@@ -267,7 +268,12 @@ skymain() {
       maincd "$skymainBASICO"SKYSYSTEM "SKYSYSTEM" "$2"
       ;;
     2)
+<<<<<<< HEAD
       maincd "$skymainBASICO"PROYECTOS/SKYCARPETA "SKYCARPETA" "$2"
+=======
+      skycd ~
+      skycd PROYECTO/SKYCARPETA && echo "Estas en SKYCARPETA"
+>>>>>>> ee464a3 (Auto update)
       ;;
     3)
       maincd "$skymainBASICO"PROYECTOS/SKYCARPETA "AUN NO DISPONIBLE" "$2"

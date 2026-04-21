@@ -1,3 +1,4 @@
+# PROTOTIPO Version -> 100%!
 # Alias u otros datos
 alias sd='skycd'
 skymainBASICO="/mnt/c/Users/juanf/"
@@ -149,7 +150,12 @@ skymain() {
       maincd "$skymainBASICO"SKYSYSTEM "SKYSYSTEM" "$2"
       ;;
     2)
+<<<<<<< HEAD
       maincd "$skymainBASICO"PROYECTOS/SKYCARPETA "SKYCARPETA" "$2"
+=======
+      skycd ~
+      skycd PROYECTO/SKYCARPETA && echo "Estas en SKYCARPETA"
+>>>>>>> ee464a3 (Auto update)
       ;;
     3)
       maincd "$skymainBASICO"PROYECTOS/SKYCARPETA "AUN NO DISPONIBLE" "$2"
@@ -177,20 +183,27 @@ skymain() {
 bluemain() {
   case "$1" in
     1)
-      cd ~
-      skycd /storage/emulated/0/SKYCARPETA && echo "Estas en SKYCARPETA"
+      skycd ~
+      skycd /storage/emulated/0/SKYSYSTEM && echo "Estas en SKYSYSTEM"
       ;;
     2)
-      skycd /storage/emulated/0/REPOSITORIOS && echo "Estas en REPOSITORIOS"
+      skycd ~
+      skycd /storage/emulated/0/REPOSITORIOS/SKYCARPETA && echo "Estas en SKYCARPETA"
       ;;
     3)
-      skycd /storage/emulated/0/REPOSITORIOS/terminal-config && echo "Estas en TERMINAL-CONFIG de REPOSITORIOS"
+      skycd ~
+      skycd /storage/emulated/0/REPOSITORIOS && echo "Estas en REPOSITORIOS"
       ;;
     4)
+      skycd ~
+      skycd /storage/emulated/0/REPOSITORIOS/terminal-config && echo "Estas en TERMINAL-CONFIG"
+      ;;
+    5)
+      skycd ~
       skycd /storage/emulated/0/REPOSITORIOS/Proyecto-G-nesis-ASISTENTE- && echo "Estas en PROYECTO-G-NESIS-ASISTENTE-"
       ;;
     *)
-      echo "Opciones:"
+      echo "Opciones:" # METER SISTEMA AUTOMATICO
       echo "1 = SKYCARPETA"
       echo "2 = REPOSITORIOS (hacia abajo sus carpetas)"
       echo "3 = Terminal config"
