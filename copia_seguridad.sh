@@ -118,8 +118,13 @@ fi
 # SKYSYSTEM START
 # Alias u otros datos
 alias sd='skycd'
+skymainBASICO="/mnt/c/Users/juanf/"
+
+# Prototipo de comandos
 Prototipo="systemCopyCommands.sh"
-list=(
+
+# Opciones de navegacion
+skymainOPTIONS=(
   "SKYSYSTEM"
   "SKYCARPETA"
   "> LUCKY-BLOCK-GAME"
@@ -185,17 +190,30 @@ colors() {
 skycd() {
   if [ -z "$1" ]; then
     echo -e "\e[31mDigita una ubicacion lol\e[0m"
-    return
+    return 1
   fi
 
-  cd "$1" || {
+  if ! cd "$1"; then
     echo -e "\e[31mNo se pudo entrar a la carpeta\e[0m"
-    return
-  }
+    return 1
+  fi
 
   echo -e "\e[32mEstas en $(pwd)\e[0m"
   echo -e "\e[34mArchivos:\e[0m"
   ls -a
+}
+
+maincd() {
+  skycd ~
+  skycd "$1"
+  echo "Estas en $2"
+  sleep 2
+  if [[ "$3" == "S" ]]; then
+    echo "Guardando durante navegacion"
+    save
+  else
+    echo "Sin guardar despues de navegacion"
+  fi
 }
 
 back() {
@@ -230,29 +248,27 @@ skymainAllSaves() {
 # Para SkyMain - Laptod OP
 skymain() {
   case "$1" in
-    0)
-      echo "SKYSYSTEM se enfoca en clonar repositorios del ADMIN, demas comandos te envian a los repositorios de PROYECTOS o REPOSITORIOS"
-      ;;
     1)
-      skycd ~
-      skycd SKYSYSTEM && echo "Estas en SKYSYSTEM"
-      save
+      maincd "$skymainBASICO"SKYSYSTEM "SKYSYSTEM" "$2"
       ;;
     2)
-      skycd PROYECTO/SKYCARPETA && echo "Estas en SKYCARPETA"
+      maincd "$skymainBASICO"PROYECTOS/SKYCARPETA "SKYCARPETA" "$2"
       ;;
     3)
-      skycd PROYECTO/REPOSITORIOS && echo "Estas en REPOSITORIOS"
+      maincd "$skymainBASICO"PROYECTOS/SKYCARPETA "AUN NO DISPONIBLE" "$2"
       ;;
     4)
-      skycd PROYECTO/REPOSITORIOS/terminal-config && echo "Estas en TERMINAL-CONFIG de REPOSITORIOS"
+      maincd "$skymainBASICO"PROYECTOS/REPOSITORIOS "REPOSITORIOS" "$2"
       ;;
     5)
-      skycd Proyecto-G-nesis-ASISTENTE- && echo "Estas en PROYECTO-G-NESIS-ASISTENTE-"
+      maincd "$skymainBASICO"PROYECTOS/REPOSITORIOS/terminal-config "TERMINAL-CONFIG" "$2"
+      ;;
+    6)
+      maincd "$skymainBASICO"PROYECTOS/REPOSITORIOS/ "AUN NO DISPONIBLE" "$2"
       ;;
     *)
-      i=0
-      for item in "${list[@]}"; do
+      i=1
+      for item in "${skymainOPTIONS[@]}"; do
         echo "[$i] = $item"
         ((i++))
       done

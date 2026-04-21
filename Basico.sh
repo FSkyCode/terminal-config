@@ -14,6 +14,11 @@ skymainOPTIONS=(
   "> terminal-config"
   "> Proyecto-G-nesis-ASISTENTE-"
 )
+bluemainOPTIONS=(
+  "SKYSYSTEM"
+  "SKYCARPETA"
+  "> LUCKY-BLOCK-GAME"
+)
 
 
 # Comandos personalisados
@@ -71,27 +76,18 @@ colors() {
 # Comandos personalizados
 skycd() {
   if [ -z "$1" ]; then
-
     echo -e "\e[31mDigita una ubicacion lol\e[0m"
-    return
+    return 1
   fi
 
-  cd "$1" || {
+  if ! cd "$1"; then
     echo -e "\e[31mNo se pudo entrar a la carpeta\e[0m"
-    return
-  }
+    return 1
+  fi
 
   echo -e "\e[32mEstas en $(pwd)\e[0m"
   echo -e "\e[34mArchivos:\e[0m"
   ls -a
-}
-
-maincd() {
-  skycd ~
-  skycd "$1"
-  echo "Estas en $2"
-  sleep 2
-  save
 }
 
 back() {
@@ -105,6 +101,9 @@ at() {
   cd -
   echo "Y volo... Nombrando su barco Libertad"
 }
+
+# --  Dispositivos  --
+# Comandos helpers
 
 # Guardado Globalizado
 skymainAllSaves() {
@@ -121,31 +120,51 @@ skymainAllSaves() {
   done
 }
 
+maincd() {
+  cd ~
+  skycd "$1"
+  echo "Estas en $2"
+  if [[ "$3" == "S" ]]; then
+    sleep 1
+    echo "Guardando durante navegacion"
+    save
+  else
+    echo "Sin guardar despues de navegacion"
+    mostrar_opciones
+  fi
+}
 
-# Dispositivos
+mostrar_opciones() {
+  local i=1
+  for item in "${skymainOPTIONS[@]}"; do
+    echo "[$i] = $item"
+    ((i++))
+  done
+}
+
 # Para SkyMain - Laptod OP
 skymain() {
   case "$1" in
-    0)
-      echo "SKYSYSTEM se enfoca en clonar repositorios del ADMIN, demas comandos te envian a los repositorios de PROYECTOS o REPOSITORIOS"
-      ;;
     1)
-      maincd "$skymainBASICO"SKYSYSTEM "SKYSYSTEM"
+      maincd "$skymainBASICO"SKYSYSTEM "SKYSYSTEM" "$2"
       ;;
     2)
-      maincd "$skymainBASICO"PROYECTO/SKYCARPETA "SKYCARPETA"
+      maincd "$skymainBASICO"PROYECTOS/SKYCARPETA "SKYCARPETA" "$2"
       ;;
     3)
-      skycd PROYECTO/REPOSITORIOS && echo "Estas en REPOSITORIOS"
+      maincd "$skymainBASICO"PROYECTOS/SKYCARPETA "AUN NO DISPONIBLE" "$2"
       ;;
     4)
-      skycd PROYECTO/REPOSITORIOS/terminal-config && echo "Estas en TERMINAL-CONFIG de REPOSITORIOS"
+      maincd "$skymainBASICO"PROYECTOS/REPOSITORIOS "REPOSITORIOS" "$2"
       ;;
     5)
-      skycd Proyecto-G-nesis-ASISTENTE- && echo "Estas en PROYECTO-G-NESIS-ASISTENTE-"
+      maincd "$skymainBASICO"PROYECTOS/REPOSITORIOS/terminal-config "TERMINAL-CONFIG" "$2"
+      ;;
+    6)
+      maincd "$skymainBASICO"PROYECTOS/REPOSITORIOS/ "AUN NO DISPONIBLE" "$2"
       ;;
     *)
-      i=0
+      i=1
       for item in "${skymainOPTIONS[@]}"; do
         echo "[$i] = $item"
         ((i++))
