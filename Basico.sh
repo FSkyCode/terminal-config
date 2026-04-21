@@ -125,19 +125,23 @@ maincd() {
   cd ~
   skycd "$1"
   echo "Estas en $2"
-  if [[ "$3" == "S" ]]; then
+  if [[ "$4" == "S" ]]; then
     sleep 1
     echo "Guardando durante navegacion"
     save
   else
     echo "Sin guardar despues de navegacion"
-    mostrar_opciones
+    mostrar_opciones "$3"
   fi
 }
 
 mostrar_opciones() {
+  if [[ "$1" == "skymain"]]; then
+    usuarioNavegacion="skymainOPTIONS"
+  elif [[ "$1" == "bluemain"]]; then
+    usuarioNavegacion="bluemainOPTIONS"
   local i=1
-  for item in "${skymainOPTIONS[@]}"; do
+  for item in "${$usuarioNavegacion[@]}"; do
     echo "[$i] = $item"
     ((i++))
   done
@@ -150,12 +154,7 @@ skymain() {
       maincd "$skymainBASICO"SKYSYSTEM "SKYSYSTEM" "$2"
       ;;
     2)
-<<<<<<< HEAD
       maincd "$skymainBASICO"PROYECTOS/SKYCARPETA "SKYCARPETA" "$2"
-=======
-      skycd ~
-      skycd PROYECTO/SKYCARPETA && echo "Estas en SKYCARPETA"
->>>>>>> ee464a3 (Auto update)
       ;;
     3)
       maincd "$skymainBASICO"PROYECTOS/SKYCARPETA "AUN NO DISPONIBLE" "$2"
@@ -170,11 +169,7 @@ skymain() {
       maincd "$skymainBASICO"PROYECTOS/REPOSITORIOS/ "AUN NO DISPONIBLE" "$2"
       ;;
     *)
-      i=1
-      for item in "${skymainOPTIONS[@]}"; do
-        echo "[$i] = $item"
-        ((i++))
-      done
+      mostrar_opciones "skymain"
       ;;
   esac
 }
@@ -203,10 +198,7 @@ bluemain() {
       skycd /storage/emulated/0/REPOSITORIOS/Proyecto-G-nesis-ASISTENTE- && echo "Estas en PROYECTO-G-NESIS-ASISTENTE-"
       ;;
     *)
-      echo "Opciones:" # METER SISTEMA AUTOMATICO
-      echo "1 = SKYCARPETA"
-      echo "2 = REPOSITORIOS (hacia abajo sus carpetas)"
-      echo "3 = Terminal config"
+      mostrar_opciones "bluemain"
       ;;
   esac
 }
