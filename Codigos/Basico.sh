@@ -2,7 +2,7 @@
 # Alias u otros datos
 alias sd='skycd'
 skymainBASICO="/mnt/c/Users/juanf/"
-bluemainBASICO="/storage/0/emulated/"
+bluemainBASICO="/storage/emulated/0/"
 
 # Prototipo de comandos
 Prototipo="systemCopyCommands.sh"
@@ -20,6 +20,8 @@ bluemainOPTIONS=(
   "SKYSYSTEM"
   "SKYCARPETA"
   "> LUCKY-BLOCK-GAME"
+  "REPOSITORIOS"
+  "> terminal-config"
 )
 
 
@@ -172,7 +174,7 @@ mostrar_opciones() {
 skymain() {
   case "$1" in
     1)
-      maincd "$skymainBASICO"SKYSYSTEM "SKYSYSTEM" "skymain" "$2"
+      maincd "${skymainBASICO}SKYSYSTEM" "SKYSYSTEM" "skymain" "$2"
       ;;
     2)
       maincd "$skymainBASICO"PROYECTOS/SKYCARPETA "SKYCARPETA" "$2"
@@ -199,18 +201,21 @@ skymain() {
 bluemain() {
   case "$1" in
     1)
-      maincd "$bluemainBASICO" "No existe SKYSYSTEM" "$2"
+      maincd "$bluemainBASICO"SKYSYSTEM "No existe SKYSYSTEM" "$2"
       ;;
     2)
       maincd "$bluemainBASICO"SKYCARPETA "SKYCARPETA" "$2"
       ;;
     3)
-      maincd "$bluemainBASICO"REPOSITORIOS "REPOSITORIOS" "$2"
+      maincd "$bluemainBASICO"SKYCARPETA/root/ESCRIBIR/ "SKYCARP" "$2"
       ;;
     4)
-      maincd "$bluemainBASICO"REPOSITORIOS/terminal-config "TERMINAL-CONFIG" "$2"
+      maincd "$bluemainBASICO"REPOSITORIOS "REPOSITORIOS" "$2"
       ;;
     5)
+      maincd "$bluemainBASICO"REPOSITORIOS/terminal-config "TERMINAL-CONFIG" "$2"
+      ;;
+    6)
       maincd "$bluemainBASICO"REPOSITORIOS/Proyecto-G-nesis-ASISTENTE- "SIN NOMBRE" "$2"
       ;;
     *)
