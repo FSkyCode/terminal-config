@@ -1,4 +1,4 @@
-1# PROTOTIPO
+# PROTOTIPO
 BASHRC="$HOME/.bashrc"
 source carga.sh
 
