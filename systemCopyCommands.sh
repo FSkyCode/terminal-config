@@ -48,11 +48,13 @@ sky() {
   comando="$1"
 
   case "$comando" in
-    SystemCopyCommands)
+    SystemCopyCommands|systemCopyCommands)
       SystemCopyCommands
       ;;
-    *)
+    Help|help)
       help
+      ;;
+    *)
       helpSystem
       ;;
     esac

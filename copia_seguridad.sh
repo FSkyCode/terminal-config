@@ -290,7 +290,7 @@ mostrar_opciones() {
 skymain() {
   case "$1" in
     1)
-      maincd "$skymainBASICO"SKYSYSTEM "SKYSYSTEM" "$2"
+      maincd "$skymainBASICO"SKYSYSTEM "SKYSYSTEM" "skymain" "$2"
       ;;
     2)
       maincd "$skymainBASICO"PROYECTOS/SKYCARPETA "SKYCARPETA" "$2"
