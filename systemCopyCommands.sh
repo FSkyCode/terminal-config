@@ -1,4 +1,4 @@
-# PROTOTIPO
+# PROTOTIPO A MODIFICAR
 BASHRC="$HOME/.bashrc"
 source carga.sh
 
@@ -71,3 +71,13 @@ helpSystem() {
   done
 }
 
+_sky_completar() {
+  # El comando actual que se está escribiendo
+  local palabra_actual="${COMP_WORDS[COMP_CWORD]}"
+
+  # Generar las sugerencias basadas en tu array comandosSystem
+  COMPREPLY=( $(compgen -W "${comandosSystem[*]}" -- "$palabra_actual") )
+}
+
+# Registrar la función de completado para el comando 'sky'
+complete -F _sky_completar sky
