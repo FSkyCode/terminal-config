@@ -94,6 +94,12 @@ skycd() {
   ls -a
 }
 
+skymkdir() {
+  mkdir -p "$1"
+  touch "$1/.gitkeep"
+  echo "Carpeta $1 creada =D"
+}
+
 back() {
   echo "Saliendo..."
   skycd ..
@@ -104,6 +110,36 @@ at() {
   echo "Atajo fuaaa"
   cd -
   echo "Y volo... Nombrando su barco Libertad"
+}
+
+# PRUEBA
+skymkdirLIMPIEZA() {
+  local base="/mnt/c/Users/juanf/PROYECTOS/REPOSITORIOS/terminal-config"
+  
+  # 1. Buscamos todas las carpetas dentro de la base (excluyendo la base misma)
+  # Usamos find para que sea más robusto
+  for carpeta in $(find "$base" -mindepth 1 -type d); do
+    
+    # 2. Contamos cuántos archivos hay (incluyendo ocultos como .gitkeep)
+    total_archivos=$(ls -A "$carpeta" | wc -l)
+
+    # 3. Lógica de protección
+    if [ "$total_archivos" -eq 1 ]; then
+      # Verificamos si ese único archivo es un .gitkeep
+      if [ -f "$carpeta/.gitkeep" ]; then
+        echo "Protegiendo: $carpeta (Solo contiene .gitkeep)"
+      else
+        echo "Alerta: $carpeta tiene 1 archivo que NO es .gitkeep"
+      fi
+    elif [ "$total_archivos" -eq 0 ]; then
+      echo "Carpeta vacía detectada: $carpeta. Añadiendo protección..."
+      touch "$carpeta/.gitkeep"
+    else
+      echo "OK: $carpeta tiene $total_archivos archivos."
+      # Opcional: Si quieres borrar el .gitkeep porque ya hay archivos reales
+      rm -f "$carpeta/.gitkeep"
+    fi
+  done
 }
 
 # --  Dispositivos  --
