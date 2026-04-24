@@ -1,15 +1,15 @@
-# Inicio de la cadena domino
-SystemCopyCommands() {
+PruebaSystemCopyCommands() {
+
   contenido=(
     "Recuerde estar en Terminal-Config!"
-    "Este proceso sera corto, podra configurar que una vez terminada salgas de ella sin tener que presionar nada =D"
+    "Este proceso sera corto, podra configurar lo necesario."
   )
-  UI "1" "SYSTEM COPY COMMANDS" "$contenido"
+
+  UI "1" "SYSTEM COPY COMMANDS" "${contenido[@]}"
 
   copiar=(
-    "Codigos/*.sh"
-    "System/*.sh"
-    #".sh"
+    "Codigos/Basico.sh"
+#    "System/*.sh"
   )
 
   total=${#copiar[@]}
@@ -17,20 +17,24 @@ SystemCopyCommands() {
   errores=0
 
   log "Creando copia de seguridad..."
+
   if cp ~/.bashrc Copias/copia_seguridad.sh 2>/dev/null; then
     log "Copia de seguridad exitosa =D"
     copiar_archivos
   else
-    log "No se pudo crear una copia de seguridad, continuar o pausar? (c/p)"
+    log "No se pudo crear una copia de seguridad."
     read -p "> " respuesta
-    if [[ "$respuesta" == "c" ]]; then
+
+    if [[ "$respuesta" == "Y" || "$respuesta" == "y" ]]; then
       copiar_archivos
-    elif [[ "$respuesta" == "p" ]]; then
+
+    elif [[ "$respuesta" == "N" || "$respuesta" == "n" ]]; then
       log "Pausando proceso..."
       sleep 2
       clear
+
     else
-      log "Introduzca una respuesta disponible (y/n)"
+      log "Introduzca una respuesta válida (y/n)"
     fi
   fi
 }

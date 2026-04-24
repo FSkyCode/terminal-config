@@ -13,6 +13,7 @@ UI() {
     *)
       helpUI
       ;;
+  esac
 }
 
 helpUI() {
