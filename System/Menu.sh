@@ -1,4 +1,8 @@
+cargar_ui() {
+}
+
 PruebaSystemCopyCommands() {
+
 
   contenido=(
     "Recuerde estar en Terminal-Config!"
