@@ -5,10 +5,14 @@ UI() {
   titulo="$2"
   contenido="$3"
 
+  progreso="$4"
+  total="$5"
+
   case "$tipo" in
-    LOADER)
+    Cuadro)
       CUADRO "$titulo" "$contenido"
-      CARGA
+    Barra_Progreso)
+      BARRA_PROGRESO "$progreso" "$total"
       ;;
     *)
       helpUI
@@ -18,12 +22,12 @@ UI() {
 
 helpUI() {
   echo "-- TIPOS DE UI --"
-  echo "1 = CUADRO DE CARGA"
-  echo "2 = "
+  echo "1 = Cuadro"
+  echo "2 = Barra_Progreso"
   echo "-- ARGUMENTOS PARA UI --"
   echo "1 = Tipo"
-  echo "2 = Titulo"
-  echo "3 = Contenido"
+  echo "2 = Titulo/Valor 1"
+  echo "3 = Contenido/Valor 2"
 }
 
 # TIPO 1 - CUADRO DE CARGA
@@ -35,6 +39,10 @@ log() {
   echo "-> $1"
   ((LOG_LINE++))
   [[ $LOG_LINE -gt 15 ]] && LOG_LINE=6
+}
+
+texto_mitad() {
+
 }
 
 CUADRO() {
@@ -49,13 +57,12 @@ CUADRO() {
   for i in {1..10}; do
     echo "|                               |"
   done
-
   echo "+-------------------------------+"
   echo ""
 }
 
-# CARGAR ARCHIVOS
-CARGA() {
+# TIPO 2 - BARRA DE PROGRESO
+BARRA_PROGRESO() {
   local progress=$1
   local total=$2
   local width=30

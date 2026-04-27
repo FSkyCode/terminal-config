@@ -1,38 +1,20 @@
-cargar_ui() {
-}
-
+#1 carga_ui() {}
 PruebaSystemCopyCommands() {
-
-
-  contenido=(
-    "Recuerde estar en Terminal-Config!"
-    "Este proceso sera corto, podra configurar lo necesario."
-  )
-
-  UI "1" "SYSTEM COPY COMMANDS" "${contenido[@]}"
-
-  copiar=(
-    "Codigos/Basico.sh"
-#    "System/*.sh"
-  )
-
-  total=${#copiar[@]}
-  progreso=0
-  errores=0
-
+  # COPIA DE SEGURIDAD
+  UI ""
   log "Creando copia de seguridad..."
 
-  if cp ~/.bashrc Copias/copia_seguridad.sh 2>/dev/null; then
+  if cp ~/.bashrc Copias/copia_seguridad.sh 2>/de>
     log "Copia de seguridad exitosa =D"
-    copiar_archivos
+    CARGAR
   else
     log "No se pudo crear una copia de seguridad."
     read -p "> " respuesta
 
-    if [[ "$respuesta" == "Y" || "$respuesta" == "y" ]]; then
-      copiar_archivos
+    if [[ "$respuesta" == "Y" || "$respuesta" == >
+      CARGAR
 
-    elif [[ "$respuesta" == "N" || "$respuesta" == "n" ]]; then
+    elif [[ "$respuesta" == "N" || "$respuesta" =>
       log "Pausando proceso..."
       sleep 2
       clear
@@ -41,4 +23,16 @@ PruebaSystemCopyCommands() {
       log "Introduzca una respuesta válida (y/n)"
     fi
   fi
+
+  # CARGA
+  contenido=(
+    "Recuerde estar en Terminal-Config!"
+    "Este proceso sera corto, podra configurar lo necesario."
+  )
+  copiar=(
+  "System/modulo.sh"
+  "Codigos/modulo.sh"
+  )
+
+  UI "1" "SYSTEM COPY COMMANDS" "${contenido[@]}"
 }
