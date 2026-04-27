@@ -10,10 +10,9 @@ UI() {
 
   case "$tipo" in
     Cuadro)
-      CUADRO "$titulo" "$contenido"
+      CUADRO "$titulo" "$contenido" ;;
     Barra_Progreso)
-      BARRA_PROGRESO "$progreso" "$total"
-      ;;
+      BARRA_PROGRESO "$progreso" "$total" ;;
     *)
       helpUI
       ;;
@@ -30,6 +29,23 @@ helpUI() {
   echo "3 = Contenido/Valor 2"
 }
 
+texto_centrado() {
+  local texto="$1"
+  local ancho=50
+  local relleno="================================="
+
+  local len=${#texto}
+  local total_esp=$((ancho - len))
+
+  local izq=$(( total_esp / 2 ))
+  local der=$(( total_esp - izq ))
+
+  printf "%*s%s%*s\n" \
+    "$izq" "" \
+    "$texto" \
+    "$der" ""
+}
+
 # TIPO 1 - CUADRO DE CARGA
 LOG_LINE=6
 
@@ -41,14 +57,10 @@ log() {
   [[ $LOG_LINE -gt 15 ]] && LOG_LINE=6
 }
 
-texto_mitad() {
-
-}
-
 CUADRO() {
   clear
   echo "================================="
-  echo "$1"
+  texto_centrado "$1"
   echo "================================="
   echo ""
   echo "$2"
@@ -62,16 +74,25 @@ CUADRO() {
 }
 
 # TIPO 2 - BARRA DE PROGRESO
+
 BARRA_PROGRESO() {
   local progress=$1
   local total=$2
   local width=30
 
-  local percent=$((progress * 100 / total))
-  local filled=$((progress * width / total))
+  local percent filled
+
+  if [[ $total -eq 0 ]]; then
+    percent=0
+    filled=0
+  else
+    percent=$((progress * 100 / total))
+    filled=$((progress * width / total))
+  fi
+
+  local bar
+  bar=$(printf '%*s' "$filled" | tr ' ' '#')
 
   tput cup 17 2
-  printf "[%-${width}s] %d%%" "$(printf '#%.0s' $(seq 1 $filled))" "$percent"
+  printf "[%-${width}s] %d%%" "$bar" "$percent"
 }
-
-# TIPO 2 - 

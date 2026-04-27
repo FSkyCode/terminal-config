@@ -1,18 +1,19 @@
 #1 carga_ui() {}
 PruebaSystemCopyCommands() {
   # COPIA DE SEGURIDAD
-  UI ""
-  log "Creando copia de seguridad..."
+  contenido=( "XD" "Lol" )
+  UI "Cuadro" "COPIA" contenido
 
+  log "Creando copia de seguridad..."
   if cp ~/.bashrc Copias/copia_seguridad.sh 2>/de>
     log "Copia de seguridad exitosa =D"
-    CARGAR
+#
   else
     log "No se pudo crear una copia de seguridad."
     read -p "> " respuesta
 
     if [[ "$respuesta" == "Y" || "$respuesta" == >
-      CARGAR
+#
 
     elif [[ "$respuesta" == "N" || "$respuesta" =>
       log "Pausando proceso..."
@@ -34,5 +35,5 @@ PruebaSystemCopyCommands() {
   "Codigos/modulo.sh"
   )
 
-  UI "1" "SYSTEM COPY COMMANDS" "${contenido[@]}"
+ # UI "1" "SYSTEM COPY COMMANDS" "${contenido[@]}"
 }
